@@ -8,9 +8,38 @@ function App() {
   const [gender, setGender] = useState("");
   const [grade, setGrade] = useState(0);
   const [student, setStudent] = useState([]);
+//   const [view,setView]= useState(false);	
+// const [error,setError]=useState("");
   // const display = ()=>{
   // console.log(name,age,Gender,grade);
   // }
+//   const signUp =()=>{
+//     if (username && pwd){
+//       Axios.post("http://localhost:3001",{
+//         username: username,
+//         password:pwd}).then((result)=>{
+//           setError((check)=>result.data)
+//         });
+//       }else{
+//         setError((check)=>"Password must be 8 caracters at least !")
+//       }
+//     }
+//     const signIn = () =>{
+//       if(username && pwd){
+//         Axios.post("http://localhost:3001/signin",{ 
+// username : username,
+// password: pwd
+// }).then((result)=>{
+//           setError((check)=>result.data);
+//           if (result.data==="login successful!"){
+//             setView((check)=>true)
+//           console.log(username);
+//         }
+//       })
+//       }else{
+//         setError((check)=>"somthing is messing :o")
+//       }
+    
   const add = () => {
     Axios.post("http://localhost:3000/create", {
       name: name,
@@ -28,6 +57,9 @@ function App() {
   };
   return (
     <div>
+      <div>
+        <h1>Student Management</h1>
+      </div>
       <div className="info">
         <label>Name</label>
         <input
@@ -61,18 +93,22 @@ function App() {
             setGrade(event.target.value);
           }}
         ></input>
-        <button onClick={add}>Add Student</button>
+        <button variant="primary" size="lg" onClick={add}>
+          Add Student
+        </button>
       </div>
       <div className="show">
-        <button onClick={getStudents}>Get Student</button>
-        {student.map((value, index) =>{
+        <button variant="primary" size="lg" onClick={getStudents}>
+          Get Student
+        </button>
+        {student.map((value, index) => {
           return (
             <div className="student">
               <h3>Name :{value.name}</h3>
               <h3> Age :{value.age}</h3>
               <h3> Gender :{value.gender}</h3>
               <h3> Grade :{value.grade}</h3>
-            </div> 
+            </div>
           );
         })}
       </div>
